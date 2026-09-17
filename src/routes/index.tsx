@@ -6,6 +6,7 @@ import {
   Boxes,
   BrainCircuit,
   CheckCircle2,
+  Clapperboard,
   Code2,
   ExternalLink,
   GraduationCap,
@@ -13,7 +14,6 @@ import {
   Mail,
   Menu,
   MonitorPlay,
-  Motion,
   Palette,
   Phone,
   Rocket,
@@ -98,7 +98,7 @@ const services = [
       "Transform complex information into structured, clear, meaningful, and engaging learning content.",
   },
   {
-    icon: Motion,
+    icon: Clapperboard,
     title: "Graphic & Motion Designer",
     description:
       "Create visually engaging graphics, animations, motion graphics, and multimedia that support communication and learning.",
@@ -132,11 +132,11 @@ function Portfolio() {
     const message = String(form.get("message") ?? "").trim();
     const nextErrors: Record<string, string> = {};
 
-    if (!name || name.length > 100) nextErrors.name = "Enter your name (up to 100 characters).";
+    if (!name || name.length > 100) nextErrors["name"] = "Enter your name (up to 100 characters).";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || email.length > 255)
-      nextErrors.email = "Enter a valid email address.";
+      nextErrors["email"] = "Enter a valid email address.";
     if (!message || message.length > 1000)
-      nextErrors.message = "Enter a message (up to 1,000 characters).";
+      nextErrors["message"] = "Enter a message (up to 1,000 characters).";
 
     setErrors(nextErrors);
     if (Object.keys(nextErrors).length) return;
@@ -407,18 +407,18 @@ function Portfolio() {
             <form className="contact-form" onSubmit={handleSubmit} noValidate>
               <div>
                 <label htmlFor="name">Name</label>
-                <Input id="name" name="name" autoComplete="name" maxLength={100} aria-invalid={Boolean(errors.name)} aria-describedby={errors.name ? "name-error" : undefined} />
-                {errors.name && <p id="name-error" className="form-error">{errors.name}</p>}
+                <Input id="name" name="name" autoComplete="name" maxLength={100} aria-invalid={Boolean(errors["name"])} aria-describedby={errors["name"] ? "name-error" : undefined} />
+                {errors["name"] && <p id="name-error" className="form-error">{errors["name"]}</p>}
               </div>
               <div>
                 <label htmlFor="email">Email</label>
-                <Input id="email" name="email" type="email" autoComplete="email" maxLength={255} aria-invalid={Boolean(errors.email)} aria-describedby={errors.email ? "email-error" : undefined} />
-                {errors.email && <p id="email-error" className="form-error">{errors.email}</p>}
+                <Input id="email" name="email" type="email" autoComplete="email" maxLength={255} aria-invalid={Boolean(errors["email"])} aria-describedby={errors["email"] ? "email-error" : undefined} />
+                {errors["email"] && <p id="email-error" className="form-error">{errors["email"]}</p>}
               </div>
               <div>
                 <label htmlFor="message">Message</label>
-                <Textarea id="message" name="message" rows={6} maxLength={1000} aria-invalid={Boolean(errors.message)} aria-describedby={errors.message ? "message-error" : undefined} />
-                {errors.message && <p id="message-error" className="form-error">{errors.message}</p>}
+                <Textarea id="message" name="message" rows={6} maxLength={1000} aria-invalid={Boolean(errors["message"])} aria-describedby={errors["message"] ? "message-error" : undefined} />
+                {errors["message"] && <p id="message-error" className="form-error">{errors["message"]}</p>}
               </div>
               <Button type="submit" size="lg" className="h-12 w-full rounded-none bg-accent font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto">
                 Send Message <Send />
