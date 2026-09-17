@@ -22,6 +22,7 @@ import {
   Target,
   X,
 } from "lucide-react";
+import emailjs from "@emailjs/browser";
 import { FormEvent, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -112,10 +113,16 @@ const values = [
   { icon: Rocket, title: "Grow", text: "Building capabilities for a career in digital learning." },
 ];
 
+const EMAILJS_SERVICE_ID = "service_bq4tudw";
+const EMAILJS_TEMPLATE_ID = "template_zh9rspr";
+const EMAILJS_PUBLIC_KEY = "EOMOdw1y-oZUt1v8W";
+
 function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [sending, setSending] = useState(false);
+  const [status, setStatus] = useState<{ ok: boolean; text: string } | null>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 24);
@@ -124,9 +131,10 @@ function Portfolio() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formEl = event.currentTarget;
+    const form = new FormData(formEl);
     const name = String(form.get("name") ?? "").trim();
     const email = String(form.get("email") ?? "").trim();
     const message = String(form.get("message") ?? "").trim();
@@ -139,12 +147,37 @@ function Portfolio() {
       nextErrors["message"] = "Enter a message (up to 1,000 characters).";
 
     setErrors(nextErrors);
+    setStatus(null);
     if (Object.keys(nextErrors).length) return;
 
-    const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
-    window.location.href = `mailto:mohamedshariff201@gmail.com?subject=${subject}&body=${body}`;
+    setSending(true);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        {
+          name,
+          email,
+          message,
+          from_name: name,
+          from_email: email,
+          reply_to: email,
+          subject: `Portfolio enquiry from ${name}`,
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY },
+      );
+      formEl.reset();
+      setStatus({ ok: true, text: "Thanks! Your message has been sent." });
+    } catch {
+      setStatus({
+        ok: false,
+        text: "Sorry, the message could not be sent. Please email mohamedshariff201@gmail.com directly.",
+      });
+    } finally {
+      setSending(false);
+    }
   };
+
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
