@@ -147,6 +147,13 @@ a { transition: color 180ms ease, background-color 180ms ease, border-color 180m
   line-height: 0.82;
   letter-spacing: 0;
 }
+
+.hero-word--name {
+  font-size: clamp(2.9rem, 9.5vw, 8.5rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
 .hero-rule { height: 0.5rem; width: min(70%, 50rem); margin-top: 1.45rem; background: linear-gradient(90deg, var(--primary), var(--accent)); }
 .hero-outline { border-color: color-mix(in oklab, var(--hero-foreground) 35%, transparent); background: transparent; color: var(--hero-foreground); }
 .hero-outline:hover { background: color-mix(in oklab, var(--hero-foreground) 10%, transparent); color: var(--hero-foreground); }

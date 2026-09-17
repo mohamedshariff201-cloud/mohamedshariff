@@ -196,7 +196,10 @@ function Portfolio() {
           <div className="mx-auto flex min-h-[94svh] max-w-7xl flex-col justify-center px-5 pb-16 pt-28 sm:px-8 lg:px-12">
             <div className="relative z-10">
               <p className="eyebrow animate-reveal">Emerging E-Learning Professional</p>
-              <h1 className="hero-word animate-reveal" style={{ animationDelay: "80ms" }}>PORTFOLIO</h1>
+              <h1 className="hero-word hero-word--name animate-reveal" style={{ animationDelay: "80ms" }}>
+                <span className="block">Mohamed</span>
+                <span className="block text-accent">Shariff M</span>
+              </h1>
               <div className="hero-rule animate-reveal" style={{ animationDelay: "140ms" }} />
             </div>
 
