@@ -456,10 +456,12 @@ function Portfolio() {
                 <Textarea id="message" name="message" rows={6} maxLength={1000} aria-invalid={Boolean(errors["message"])} aria-describedby={errors["message"] ? "message-error" : undefined} />
                 {errors["message"] && <p id="message-error" className="form-error">{errors["message"]}</p>}
               </div>
-              <Button type="submit" size="lg" className="h-12 w-full rounded-none bg-accent font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto">
-                Send Message <Send />
+              <Button type="submit" size="lg" disabled={sending} className="h-12 w-full rounded-none bg-accent font-bold text-accent-foreground hover:bg-accent/90 sm:w-auto">
+                {sending ? "Sending..." : "Send Message"} <Send />
               </Button>
-              <p className="text-xs leading-5 text-contact-muted">This opens your email app with your message ready to send.</p>
+              <p aria-live="polite" className={`text-xs leading-5 ${status && !status.ok ? "text-destructive" : "text-contact-muted"}`}>
+                {status ? status.text : "Your message is sent straight to my inbox."}
+              </p>
             </form>
           </div>
         </section>
