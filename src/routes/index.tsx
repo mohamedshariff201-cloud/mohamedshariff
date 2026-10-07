@@ -28,7 +28,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import portraitAsset from "@/assets/portrait.jpg.asset.json";
+import portraitAsset from "@/assets/port.jpeg.asset.json";
 
 const description =
   "Portfolio of Mohamed Shariff M, an emerging e-learning developer, instructional developer, and graphic and motion graphics designer.";
@@ -494,8 +494,8 @@ function ProfileArtwork() {
           className="profile-art__photo"
           src={portraitAsset.url}
           alt="Mohamed Shariff M, e-learning developer and graphic & motion graphics designer"
-          width={618}
-          height={825}
+          width={1440}
+          height={1920}
         />
       </div>
       <div className="profile-art__node profile-art__node--one"><BookOpen /></div>
