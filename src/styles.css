@@ -230,7 +230,7 @@ a.contact-link:hover { transform: translateX(4px); color: var(--accent); }
 }
 
 @media (min-width: 1024px) {
-  .profile-art { max-width: 22rem; }
+  .profile-art { max-width: 24rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
