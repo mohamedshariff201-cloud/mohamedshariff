@@ -163,12 +163,12 @@ a { transition: color 180ms ease, background-color 180ms ease, border-color 180m
 .profile-art__label { position: absolute; z-index: 3; right: 0; top: -1rem; display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: var(--accent); color: var(--accent-foreground); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
 .profile-art__panel { position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; border: 1px solid color-mix(in oklab, var(--hero-foreground) 22%, transparent); background: color-mix(in oklab, var(--hero-foreground) 5%, transparent); }
 .profile-art__photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 16%; }
-.profile-art__panel::after { content: ""; position: absolute; inset: auto 0 0; height: 34%; background: linear-gradient(to top, color-mix(in oklab, var(--hero) 72%, transparent), transparent); }
+.profile-art__panel::after { content: ""; position: absolute; inset: auto 0 0; height: 42%; background: linear-gradient(to top, color-mix(in oklab, var(--hero) 90%, transparent), transparent); }
 .profile-art__node { position: absolute; z-index: 3; display: grid; width: 2.8rem; height: 2.8rem; place-items: center; border: 1px solid color-mix(in oklab, var(--hero-foreground) 25%, transparent); background: var(--hero); color: var(--accent); animation: float 4s ease-in-out infinite; }
 .profile-art__node svg { width: 1.25rem; }
-.profile-art__node--one { left: -1.4rem; top: 16%; }
-.profile-art__node--two { right: -1.4rem; top: 44%; animation-delay: -1.2s; }
-.profile-art__node--three { left: 10%; bottom: -1.4rem; animation-delay: -2.3s; }
+.profile-art__node--one { left: -1.4rem; top: 14%; }
+.profile-art__node--two { right: -1.4rem; top: 46%; animation-delay: -1.2s; }
+.profile-art__node--three { left: 8%; bottom: -1.4rem; animation-delay: -2.3s; }
 
 .section-pad { padding-top: 6rem; padding-bottom: 6rem; }
 .about-grid { background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); mask-image: linear-gradient(135deg, black, transparent); }

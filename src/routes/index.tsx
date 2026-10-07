@@ -497,10 +497,10 @@ function ProfileArtwork() {
           width={618}
           height={825}
         />
-        <div className="profile-art__node profile-art__node--one"><BookOpen /></div>
-        <div className="profile-art__node profile-art__node--two"><Palette /></div>
-        <div className="profile-art__node profile-art__node--three"><Code2 /></div>
       </div>
+      <div className="profile-art__node profile-art__node--one"><BookOpen /></div>
+      <div className="profile-art__node profile-art__node--two"><Palette /></div>
+      <div className="profile-art__node profile-art__node--three"><Code2 /></div>
     </div>
   );
 }
