@@ -159,11 +159,10 @@ a { transition: color 180ms ease, background-color 180ms ease, border-color 180m
 .hero-outline:hover { background: color-mix(in oklab, var(--hero-foreground) 10%, transparent); color: var(--hero-foreground); }
 
 .profile-art { position: relative; width: 100%; max-width: 21rem; margin-inline: auto; justify-self: center; }
-.profile-art::before { content: ""; position: absolute; inset: 1.6rem -1.6rem -1.6rem 1.6rem; border: 1px solid color-mix(in oklab, var(--accent) 45%, transparent); }
 .profile-art__label { position: absolute; z-index: 3; right: 0; top: -1rem; display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: var(--accent); color: var(--accent-foreground); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
-.profile-art__panel { position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; border: 1px solid color-mix(in oklab, var(--hero-foreground) 22%, transparent); background: color-mix(in oklab, var(--hero-foreground) 5%, transparent); }
+.profile-art__panel { position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; border: 1px solid color-mix(in oklab, var(--hero-foreground) 20%, transparent); border-left: 3px solid var(--accent); border-bottom: none; background: color-mix(in oklab, var(--hero-foreground) 5%, transparent); }
 .profile-art__photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 16%; }
-.profile-art__panel::after { content: ""; position: absolute; inset: auto 0 0; height: 42%; background: linear-gradient(to top, color-mix(in oklab, var(--hero) 90%, transparent), transparent); }
+.profile-art__panel::after { content: ""; position: absolute; inset: auto 0 0; height: 46%; background: linear-gradient(to top, var(--hero) 6%, transparent); }
 .profile-art__node { position: absolute; z-index: 3; display: grid; width: 2.8rem; height: 2.8rem; place-items: center; border: 1px solid color-mix(in oklab, var(--hero-foreground) 25%, transparent); background: var(--hero); color: var(--accent); animation: float 4s ease-in-out infinite; }
 .profile-art__node svg { width: 1.25rem; }
 .profile-art__node--one { left: -1.4rem; top: 14%; }
