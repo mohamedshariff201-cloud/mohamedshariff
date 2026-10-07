@@ -158,19 +158,16 @@ a { transition: color 180ms ease, background-color 180ms ease, border-color 180m
 .hero-outline { border-color: color-mix(in oklab, var(--hero-foreground) 35%, transparent); background: transparent; color: var(--hero-foreground); }
 .hero-outline:hover { background: color-mix(in oklab, var(--hero-foreground) 10%, transparent); color: var(--hero-foreground); }
 
-.profile-art { position: relative; justify-self: stretch; }
+.profile-art { position: relative; width: 100%; max-width: 21rem; margin-inline: auto; justify-self: center; }
 .profile-art__label { position: absolute; z-index: 3; right: 0; top: -1rem; display: flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1rem; background: var(--accent); color: var(--accent-foreground); font-size: 0.72rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; }
-.profile-art__panel { position: relative; min-height: 310px; overflow: hidden; border: 1px solid color-mix(in oklab, var(--hero-foreground) 16%, transparent); background: color-mix(in oklab, var(--hero-foreground) 4%, transparent); }
-.profile-art__panel::after { content: ""; position: absolute; inset: 14% 13%; border: 1px solid color-mix(in oklab, var(--accent) 45%, transparent); border-radius: 50%; }
-.profile-art__head { position: absolute; z-index: 1; width: 6.8rem; height: 7.8rem; left: 50%; top: 3.1rem; transform: translateX(-50%); border-radius: 48% 48% 44% 44%; background: linear-gradient(145deg, var(--hero-muted), var(--hero-foreground)); }
-.profile-art__body { position: absolute; z-index: 1; width: 15rem; height: 14rem; left: 50%; bottom: -6rem; transform: translateX(-50%); border-radius: 50% 50% 0 0; background: linear-gradient(145deg, var(--primary), color-mix(in oklab, var(--hero) 70%, var(--primary))); }
-.profile-art__screen { position: absolute; z-index: 2; left: 50%; bottom: 1.2rem; display: flex; width: 10rem; height: 5rem; transform: translateX(-50%); align-items: center; justify-content: space-around; border: 1px solid color-mix(in oklab, var(--hero-foreground) 25%, transparent); background: color-mix(in oklab, var(--hero) 94%, transparent); color: var(--accent); }
-.profile-art__screen span { font-family: var(--font-display); font-size: 1.8rem; font-weight: 800; color: var(--hero-foreground); }
+.profile-art__panel { position: relative; width: 100%; aspect-ratio: 3 / 4; overflow: hidden; border: 1px solid color-mix(in oklab, var(--hero-foreground) 20%, transparent); border-left: 3px solid var(--accent); border-bottom: none; background: color-mix(in oklab, var(--hero-foreground) 5%, transparent); }
+.profile-art__photo { display: block; width: 100%; height: 100%; object-fit: cover; object-position: 50% 16%; }
+.profile-art__panel::after { content: ""; position: absolute; inset: auto 0 0; height: 46%; background: linear-gradient(to top, var(--hero) 6%, transparent); }
 .profile-art__node { position: absolute; z-index: 3; display: grid; width: 2.8rem; height: 2.8rem; place-items: center; border: 1px solid color-mix(in oklab, var(--hero-foreground) 25%, transparent); background: var(--hero); color: var(--accent); animation: float 4s ease-in-out infinite; }
 .profile-art__node svg { width: 1.25rem; }
-.profile-art__node--one { left: 8%; top: 18%; }
-.profile-art__node--two { right: 8%; top: 34%; animation-delay: -1.2s; }
-.profile-art__node--three { left: 13%; bottom: 10%; animation-delay: -2.3s; }
+.profile-art__node--one { left: -1.4rem; top: 14%; }
+.profile-art__node--two { right: -1.4rem; top: 46%; animation-delay: -1.2s; }
+.profile-art__node--three { left: 8%; bottom: -1.4rem; animation-delay: -2.3s; }
 
 .section-pad { padding-top: 6rem; padding-bottom: 6rem; }
 .about-grid { background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px); mask-image: linear-gradient(135deg, black, transparent); }
@@ -233,8 +230,7 @@ a.contact-link:hover { transform: translateX(4px); color: var(--accent); }
 }
 
 @media (min-width: 1024px) {
-  .profile-art { margin-bottom: -4.8rem; }
-  .profile-art__panel { min-height: 410px; }
+  .profile-art { max-width: 22rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

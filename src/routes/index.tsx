@@ -28,6 +28,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import portraitAsset from "@/assets/portrait.jpg.asset.json";
 
 const description =
   "Portfolio of Mohamed Shariff M, an emerging e-learning developer, instructional developer, and graphic and motion graphics designer.";
@@ -486,16 +487,20 @@ function Portfolio() {
 
 function ProfileArtwork() {
   return (
-    <div className="profile-art animate-reveal" style={{ animationDelay: "280ms" }} aria-label="Abstract portrait representing Mohamed Shariff M">
+    <div className="profile-art animate-reveal" style={{ animationDelay: "280ms" }}>
       <div className="profile-art__label"><Sparkles className="size-4" /> Creative learning</div>
       <div className="profile-art__panel">
-        <div className="profile-art__head" />
-        <div className="profile-art__body" />
-        <div className="profile-art__screen"><span>MS</span><BrainCircuit /></div>
-        <div className="profile-art__node profile-art__node--one"><BookOpen /></div>
-        <div className="profile-art__node profile-art__node--two"><Palette /></div>
-        <div className="profile-art__node profile-art__node--three"><Code2 /></div>
+        <img
+          className="profile-art__photo"
+          src={portraitAsset.url}
+          alt="Mohamed Shariff M, e-learning developer and graphic & motion graphics designer"
+          width={618}
+          height={825}
+        />
       </div>
+      <div className="profile-art__node profile-art__node--one"><BookOpen /></div>
+      <div className="profile-art__node profile-art__node--two"><Palette /></div>
+      <div className="profile-art__node profile-art__node--three"><Code2 /></div>
     </div>
   );
 }
