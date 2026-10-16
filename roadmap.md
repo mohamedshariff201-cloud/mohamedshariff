@@ -1,5 +1,6 @@
 # Roadmap
 
-- Add Mohamed's real works to the Portfolio ("Learning & Creative Journey") section — waiting on Mohamed to type each work's title, description, link and/or image. Nothing will be invented.
-- DONE: GitHub (mohamedshariff201-cloud) added to contact section and footer; LinkedIn made a real link.
-- Optional later: once Mohamed's works exist, consider showing his GitHub repositories in the Portfolio section (profile currently has no public repos).
+- Portfolio works: first work added — "Portfolio Website" / "A responsive portfolio website." / links to https://github.com/mohamedshariff201-cloud. Thumbnail is a placeholder; waiting on Mohamed for the real screenshot.
+- Add more works as Mohamed supplies title, description, link and screenshot for each.
+- DONE: GitHub (mohamedshariff201-cloud) in contact section + footer; LinkedIn made a real link.
+- Note: the private repository `mohamedshariff201-cloud/mohamedshariff` is not linked anywhere (visitors can't open it); the profile URL is used instead.
