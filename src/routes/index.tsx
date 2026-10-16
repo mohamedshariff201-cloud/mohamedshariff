@@ -121,6 +121,28 @@ const EMAILJS_PUBLIC_KEY = "EOMOdw1y-oZUt1v8W";
 const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-shariff-m-885344323";
 const GITHUB_URL = "https://github.com/mohamedshariff201-cloud";
 
+type Work = {
+  number: string;
+  tag: string;
+  title: string;
+  description: string;
+  link: string;
+  linkLabel: string;
+  image: { url: string; width: number; height: number } | null;
+};
+
+const works: Work[] = [
+  {
+    number: "01",
+    tag: "Web project",
+    title: "Portfolio Website",
+    description: "A responsive portfolio website.",
+    link: GITHUB_URL,
+    linkLabel: "View on GitHub",
+    image: null,
+  },
+];
+
 function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -382,15 +404,37 @@ function Portfolio() {
                   ))}
                 </div>
               </div>
-              <div className="project-stage">
-                <div className="project-stage__chrome"><span /><span /><span /></div>
-                <div className="grid min-h-[360px] place-items-center p-8 text-center">
-                  <div>
-                    <Boxes className="mx-auto size-16 text-accent" strokeWidth={1.25} />
-                    <p className="mt-7 font-display text-3xl font-bold text-hero-foreground">Work in progress.</p>
-                    <p className="mx-auto mt-3 max-w-sm leading-7 text-portfolio-muted">This space is ready for future learning experiences, design explorations, and case studies.</p>
-                  </div>
-                </div>
+              <div className="grid gap-6">
+                {works.map((work) => (
+                  <article key={work.title} className="work-card">
+                    <div className="project-stage__chrome"><span /><span /><span /></div>
+                    {work.image ? (
+                      <img
+                        className="work-card__image"
+                        src={work.image.url}
+                        alt={`${work.title} preview`}
+                        width={work.image.width}
+                        height={work.image.height}
+                      />
+                    ) : (
+                      <div className="work-card__placeholder">
+                        <Boxes className="size-10 text-accent" strokeWidth={1.25} />
+                        <p>Screenshot coming soon</p>
+                      </div>
+                    )}
+                    <div className="work-card__body">
+                      <div className="flex items-center justify-between gap-4">
+                        <span className="work-card__tag">{work.tag}</span>
+                        <span className="font-display text-sm font-bold text-portfolio-muted">{work.number}</span>
+                      </div>
+                      <h3 className="mt-4 font-display text-2xl font-bold text-hero-foreground">{work.title}</h3>
+                      <p className="mt-3 leading-7 text-portfolio-muted">{work.description}</p>
+                      <a className="work-card__link" href={work.link} target="_blank" rel="noreferrer">
+                        {work.linkLabel} <ArrowRight />
+                      </a>
+                    </div>
+                  </article>
+                ))}
               </div>
             </div>
           </div>
