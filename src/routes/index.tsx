@@ -8,7 +8,6 @@ import {
   CheckCircle2,
   Clapperboard,
   Code2,
-  ExternalLink,
   Github,
   Linkedin,
   GraduationCap,
