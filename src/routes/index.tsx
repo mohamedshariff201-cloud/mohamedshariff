@@ -8,7 +8,8 @@ import {
   CheckCircle2,
   Clapperboard,
   Code2,
-  ExternalLink,
+  Github,
+  Linkedin,
   GraduationCap,
   Lightbulb,
   Mail,
@@ -117,6 +118,8 @@ const values = [
 const EMAILJS_SERVICE_ID = "service_bq4tudw";
 const EMAILJS_TEMPLATE_ID = "template_zh9rspr";
 const EMAILJS_PUBLIC_KEY = "EOMOdw1y-oZUt1v8W";
+const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-shariff-m-885344323";
+const GITHUB_URL = "https://github.com/mohamedshariff201-cloud";
 
 function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -437,7 +440,8 @@ function Portfolio() {
               <div className="mt-10 space-y-5">
                 <a className="contact-link" href="mailto:mohamedshariff201@gmail.com"><Mail /> <span><small>Email</small>mohamedshariff201@gmail.com</span></a>
                 <a className="contact-link" href="tel:+917904374804"><Phone /> <span><small>Phone</small>7904374804</span></a>
-                <div className="contact-link"><ExternalLink /> <span><small>LinkedIn</small>Mohamed Shariff M</span></div>
+                <a className="contact-link" href={LINKEDIN_URL} target="_blank" rel="noreferrer"><Linkedin /> <span><small>LinkedIn</small>Mohamed Shariff M</span></a>
+                <a className="contact-link" href={GITHUB_URL} target="_blank" rel="noreferrer"><Github /> <span><small>GitHub</small>mohamedshariff201-cloud</span></a>
               </div>
             </div>
 
@@ -478,7 +482,7 @@ function Portfolio() {
         </div>
         <div className="mx-auto mt-7 flex max-w-7xl flex-col gap-3 text-xs text-footer-muted sm:flex-row sm:items-center sm:justify-between">
           <p>© 2026 Mohamed Shariff M. All rights reserved.</p>
-          <div className="flex flex-wrap gap-5"><a href="mailto:mohamedshariff201@gmail.com">Email</a><a href="tel:+917904374804">Phone</a><span>LinkedIn</span></div>
+          <div className="flex flex-wrap gap-5"><a href="mailto:mohamedshariff201@gmail.com">Email</a><a href="tel:+917904374804">Phone</a><a href={LINKEDIN_URL} target="_blank" rel="noreferrer">LinkedIn</a><a href={GITHUB_URL} target="_blank" rel="noreferrer">GitHub</a></div>
         </div>
       </footer>
     </div>
