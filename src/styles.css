@@ -196,6 +196,17 @@ a { transition: color 180ms ease, background-color 180ms ease, border-color 180m
 .project-stage__chrome span:nth-child(2) { background: var(--primary); }
 .project-stage__chrome span:nth-child(3) { background: var(--accent); }
 
+.work-card { border: 1px solid color-mix(in oklab, var(--hero-foreground) 18%, transparent); background: color-mix(in oklab, var(--hero-foreground) 3%, transparent); box-shadow: 1.2rem 1.2rem 0 color-mix(in oklab, var(--primary) 35%, transparent); transition: transform 220ms ease, border-color 220ms ease; }
+.work-card:hover { transform: translateY(-6px); border-color: color-mix(in oklab, var(--accent) 55%, transparent); }
+.work-card__placeholder { display: grid; min-height: 260px; align-content: center; justify-items: center; gap: 0.9rem; padding: 2.5rem; text-align: center; background-image: linear-gradient(color-mix(in oklab, var(--hero-foreground) 6%, transparent) 1px, transparent 1px), linear-gradient(90deg, color-mix(in oklab, var(--hero-foreground) 6%, transparent) 1px, transparent 1px); background-size: 40px 40px; }
+.work-card__placeholder p { font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.16em; color: var(--portfolio-muted); }
+.work-card__image { display: block; width: 100%; height: auto; border-top: 1px solid color-mix(in oklab, var(--hero-foreground) 15%, transparent); }
+.work-card__body { padding: 1.75rem; }
+.work-card__tag { display: inline-flex; padding: 0.3rem 0.6rem; border: 1px solid color-mix(in oklab, var(--hero-foreground) 25%, transparent); color: var(--portfolio-muted); font-size: 0.66rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; }
+.work-card__link { display: inline-flex; margin-top: 1.4rem; align-items: center; gap: 0.5rem; color: var(--accent); font-size: 0.82rem; font-weight: 800; }
+.work-card__link svg { width: 0.95rem; }
+.work-card__link:hover { color: var(--hero-foreground); }
+
 .journey-path { display: grid; gap: 1px; background: var(--border); }
 .journey-step { position: relative; min-width: 0; background: var(--background); padding: 2rem; }
 .journey-step > span { color: var(--primary); font-size: 0.75rem; font-weight: 800; }
