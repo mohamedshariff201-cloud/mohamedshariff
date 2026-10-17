@@ -181,7 +181,7 @@ function ProjectGallery() {
 
   return (
     <>
-      <div className="mt-12 flex gap-2 overflow-x-auto pb-2" role="tablist" aria-label="Project categories">
+      <div className="mt-12 flex flex-wrap gap-2 pb-2" role="tablist" aria-label="Project categories">
         {filters.map((f) => (
           <button
             key={f}
