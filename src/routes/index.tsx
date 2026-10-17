@@ -9,6 +9,7 @@ import {
   Clapperboard,
   Code2,
   Github,
+  Layers,
   Linkedin,
   GraduationCap,
   Lightbulb,
@@ -16,6 +17,8 @@ import {
   Menu,
   MonitorPlay,
   Palette,
+  Paintbrush,
+  PenTool,
   Phone,
   Rocket,
   Send,
@@ -123,16 +126,25 @@ const GITHUB_URL = "https://github.com/mohamedshariff201-cloud";
 
 /* ---------------------------------------------------------------
    PROJECT GALLERY — to add a project, copy an entry in `works`.
-   category: one of CATEGORIES (or "Web Projects")
+   category: one of CATEGORIES (Photoshop, Illustration, Animation,
+             Adobe Captivate, Articulate Storyline) — or a free label
+             like "Web Projects" that only appears under "All"
    media: { type: "image", url } | { type: "video", url, poster? } | null
    link: project URL (Behance, YouTube, Drive, GitHub, SCORM demo...)
 ---------------------------------------------------------------- */
-const CATEGORIES = ["E-Learning Projects", "Graphic Design", "Motion Graphics", "Video Editing", "Web Projects"] as const;
+const CATEGORIES = [
+  "Photoshop Projects",
+  "Illustration Projects",
+  "Animation Projects",
+  "Adobe Captivate E-Learning Projects",
+  "Articulate Storyline E-Learning Projects",
+] as const;
 type Category = (typeof CATEGORIES)[number];
 
 type Work = {
   title: string;
-  category: Category;
+  /** One of CATEGORIES, or a free label that only shows under "All". */
+  category: string;
   description: string;
   link: string;
   linkLabel: string;
@@ -150,25 +162,26 @@ const works: Work[] = [
   },
 ];
 
-const categoryIcon: Record<Category, typeof Boxes> = {
-  "E-Learning Projects": MonitorPlay,
-  "Graphic Design": Palette,
-  "Motion Graphics": Sparkles,
-  "Video Editing": Clapperboard,
+const categoryIcon: Record<string, typeof Boxes> = {
+  "Photoshop Projects": Paintbrush,
+  "Illustration Projects": PenTool,
+  "Animation Projects": Sparkles,
+  "Adobe Captivate E-Learning Projects": MonitorPlay,
+  "Articulate Storyline E-Learning Projects": Layers,
   "Web Projects": Code2,
 };
 
 function ProjectGallery() {
   const [active, setActive] = useState<"All" | Category>("All");
-  const filters = ["All", ...CATEGORIES.filter((c) => c !== "Web Projects" || works.some((w) => w.category === c))] as ("All" | Category)[];
+  const filters: ("All" | Category)[] = ["All", ...CATEGORIES];
   const shown = active === "All" ? works : works.filter((w) => w.category === active);
-  const emptyCategories = (active === "All" ? CATEGORIES.filter((c) => c !== "Web Projects") : [active]).filter(
+  const emptyCategories = (active === "All" ? CATEGORIES : [active]).filter(
     (c) => !works.some((w) => w.category === c),
   );
 
   return (
     <>
-      <div className="mt-12 flex gap-2 overflow-x-auto pb-2" role="tablist" aria-label="Project categories">
+      <div className="mt-12 flex flex-wrap gap-2 pb-2" role="tablist" aria-label="Project categories">
         {filters.map((f) => (
           <button
             key={f}
@@ -183,7 +196,7 @@ function ProjectGallery() {
       </div>
       <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
         {shown.map((work, i) => {
-          const Icon = categoryIcon[work.category];
+          const Icon = categoryIcon[work.category] ?? Boxes;
           return (
             <article key={work.title} className="work-card flex flex-col">
               <div className="project-stage__chrome"><span /><span /><span /></div>
@@ -212,7 +225,7 @@ function ProjectGallery() {
           );
         })}
         {emptyCategories.map((c) => {
-          const Icon = categoryIcon[c];
+          const Icon = categoryIcon[c] ?? Boxes;
           return (
             <article key={c} className="work-card work-card--empty flex flex-col">
               <div className="work-card__placeholder aspect-video !min-h-0">
