@@ -225,7 +225,7 @@ function ProjectGallery() {
           );
         })}
         {emptyCategories.map((c) => {
-          const Icon = categoryIcon[c];
+          const Icon = categoryIcon[c] ?? Boxes;
           return (
             <article key={c} className="work-card work-card--empty flex flex-col">
               <div className="work-card__placeholder aspect-video !min-h-0">
