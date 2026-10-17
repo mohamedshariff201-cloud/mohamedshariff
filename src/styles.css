@@ -248,3 +248,7 @@ a.contact-link:hover { transform: translateX(4px); color: var(--accent); }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
 }
+.gallery-filter { flex-shrink: 0; padding: 0.6rem 1rem; border: 1px solid color-mix(in oklab, var(--hero-foreground) 22%, transparent); color: var(--portfolio-muted); font-size: 0.75rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease; }
+.gallery-filter:hover { color: var(--hero-foreground); border-color: var(--accent); }
+.gallery-filter--active { background: var(--accent); border-color: var(--accent); color: var(--accent-foreground); }
+.work-card--empty { border-style: dashed; box-shadow: none; }

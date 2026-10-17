@@ -121,27 +121,115 @@ const EMAILJS_PUBLIC_KEY = "EOMOdw1y-oZUt1v8W";
 const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-shariff-m-885344323";
 const GITHUB_URL = "https://github.com/mohamedshariff201-cloud";
 
+/* ---------------------------------------------------------------
+   PROJECT GALLERY — to add a project, copy an entry in `works`.
+   category: one of CATEGORIES (or "Web Projects")
+   media: { type: "image", url } | { type: "video", url, poster? } | null
+   link: project URL (Behance, YouTube, Drive, GitHub, SCORM demo...)
+---------------------------------------------------------------- */
+const CATEGORIES = ["E-Learning Projects", "Graphic Design", "Motion Graphics", "Video Editing", "Web Projects"] as const;
+type Category = (typeof CATEGORIES)[number];
+
 type Work = {
-  number: string;
-  tag: string;
   title: string;
+  category: Category;
   description: string;
   link: string;
   linkLabel: string;
-  image: { url: string; width: number; height: number } | null;
+  media: { type: "image"; url: string } | { type: "video"; url: string; poster?: string } | null;
 };
 
 const works: Work[] = [
   {
-    number: "01",
-    tag: "Web project",
     title: "Portfolio Website",
+    category: "Web Projects",
     description: "A responsive portfolio website.",
     link: GITHUB_URL,
     linkLabel: "View on GitHub",
-    image: null,
+    media: null,
   },
 ];
+
+const categoryIcon: Record<Category, typeof Boxes> = {
+  "E-Learning Projects": MonitorPlay,
+  "Graphic Design": Palette,
+  "Motion Graphics": Sparkles,
+  "Video Editing": Clapperboard,
+  "Web Projects": Code2,
+};
+
+function ProjectGallery() {
+  const [active, setActive] = useState<"All" | Category>("All");
+  const filters = ["All", ...CATEGORIES.filter((c) => c !== "Web Projects" || works.some((w) => w.category === c))] as ("All" | Category)[];
+  const shown = active === "All" ? works : works.filter((w) => w.category === active);
+  const emptyCategories = (active === "All" ? CATEGORIES.filter((c) => c !== "Web Projects") : [active]).filter(
+    (c) => !works.some((w) => w.category === c),
+  );
+
+  return (
+    <>
+      <div className="mt-12 flex gap-2 overflow-x-auto pb-2" role="tablist" aria-label="Project categories">
+        {filters.map((f) => (
+          <button
+            key={f}
+            role="tab"
+            aria-selected={active === f}
+            onClick={() => setActive(f)}
+            className={`gallery-filter${active === f ? " gallery-filter--active" : ""}`}
+          >
+            {f}
+          </button>
+        ))}
+      </div>
+      <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {shown.map((work, i) => {
+          const Icon = categoryIcon[work.category];
+          return (
+            <article key={work.title} className="work-card flex flex-col">
+              <div className="project-stage__chrome"><span /><span /><span /></div>
+              {work.media?.type === "image" ? (
+                <img className="work-card__image aspect-video object-cover" src={work.media.url} alt={`${work.title} thumbnail`} loading="lazy" />
+              ) : work.media?.type === "video" ? (
+                <video className="work-card__image aspect-video object-cover" src={work.media.url} poster={work.media.poster} controls preload="metadata" />
+              ) : (
+                <div className="work-card__placeholder aspect-video !min-h-0">
+                  <Icon className="size-10 text-accent" strokeWidth={1.25} />
+                  <p>Thumbnail coming soon</p>
+                </div>
+              )}
+              <div className="work-card__body flex flex-1 flex-col">
+                <div className="flex items-center justify-between gap-4">
+                  <span className="work-card__tag">{work.category}</span>
+                  <span className="font-display text-sm font-bold text-portfolio-muted">{String(i + 1).padStart(2, "0")}</span>
+                </div>
+                <h3 className="mt-4 font-display text-2xl font-bold text-hero-foreground">{work.title}</h3>
+                <p className="mt-3 flex-1 leading-7 text-portfolio-muted">{work.description}</p>
+                <a className="work-card__link" href={work.link} target="_blank" rel="noreferrer">
+                  {work.linkLabel} <ArrowRight />
+                </a>
+              </div>
+            </article>
+          );
+        })}
+        {emptyCategories.map((c) => {
+          const Icon = categoryIcon[c];
+          return (
+            <article key={c} className="work-card work-card--empty flex flex-col">
+              <div className="work-card__placeholder aspect-video !min-h-0">
+                <Icon className="size-10 text-accent" strokeWidth={1.25} />
+                <p>Coming soon</p>
+              </div>
+              <div className="work-card__body">
+                <span className="work-card__tag">{c}</span>
+                <p className="mt-4 leading-7 text-portfolio-muted">Projects in this category will be added here soon.</p>
+              </div>
+            </article>
+          );
+        })}
+      </div>
+    </>
+  );
+}
 
 function Portfolio() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -392,51 +480,13 @@ function Portfolio() {
 
         <section id="portfolio" className="section-pad scroll-mt-20 bg-foreground text-background">
           <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-            <div className="grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-              <div>
-                <SectionHeading kicker="Portfolio" title="Learning & Creative Journey" inverse />
-                <p className="mt-7 max-w-xl text-lg leading-8 text-portfolio-muted">
-                  Currently building meaningful projects and expanding my portfolio through continuous learning, experimentation, and creative exploration.
-                </p>
-                <div className="mt-8 grid gap-3 sm:grid-cols-2">
-                  {["E-learning exploration", "Instructional design practice", "Multimedia experimentation", "Motion graphics", "Articulate Storyline", "AI-assisted creativity"].map((item) => (
-                    <div key={item} className="flex items-center gap-3 text-sm text-portfolio-muted"><CheckCircle2 className="size-4 shrink-0 text-accent" />{item}</div>
-                  ))}
-                </div>
-              </div>
-              <div className="grid gap-6">
-                {works.map((work) => (
-                  <article key={work.title} className="work-card">
-                    <div className="project-stage__chrome"><span /><span /><span /></div>
-                    {work.image ? (
-                      <img
-                        className="work-card__image"
-                        src={work.image.url}
-                        alt={`${work.title} preview`}
-                        width={work.image.width}
-                        height={work.image.height}
-                      />
-                    ) : (
-                      <div className="work-card__placeholder">
-                        <Boxes className="size-10 text-accent" strokeWidth={1.25} />
-                        <p>Screenshot coming soon</p>
-                      </div>
-                    )}
-                    <div className="work-card__body">
-                      <div className="flex items-center justify-between gap-4">
-                        <span className="work-card__tag">{work.tag}</span>
-                        <span className="font-display text-sm font-bold text-portfolio-muted">{work.number}</span>
-                      </div>
-                      <h3 className="mt-4 font-display text-2xl font-bold text-hero-foreground">{work.title}</h3>
-                      <p className="mt-3 leading-7 text-portfolio-muted">{work.description}</p>
-                      <a className="work-card__link" href={work.link} target="_blank" rel="noreferrer">
-                        {work.linkLabel} <ArrowRight />
-                      </a>
-                    </div>
-                  </article>
-                ))}
-              </div>
+            <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-end">
+              <SectionHeading kicker="Portfolio" title="Learning & Creative Journey" inverse />
+              <p className="max-w-xl text-lg leading-8 text-portfolio-muted">
+                Currently building meaningful projects and expanding my portfolio through continuous learning, experimentation, and creative exploration.
+              </p>
             </div>
+            <ProjectGallery />
           </div>
         </section>
 
